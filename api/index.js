@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from 'mongoose';
+import userRouter from './routes/user.route.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -13,6 +14,9 @@ mongoose.connect(
 })
 
 const app = express();
+
+//creating api routes
+app.use('/api/user', userRouter);
 
 app.listen(3000, () => {
 	console.log(
