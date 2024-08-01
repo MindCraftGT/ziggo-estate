@@ -2,13 +2,19 @@
   "name": "api",
   "version": "1.0.0",
   "main": "index.js",
-   "type": "module",
-   "scripts": {
+  "type": "module",
+  "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.5.2"
+  }
 }
