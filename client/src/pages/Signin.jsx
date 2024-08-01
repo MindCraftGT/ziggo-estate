@@ -20,9 +20,8 @@ export default function SignIn() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch(signInStart());
     try {
-      dispatch(signInStart);
-
     //setting the fetch function to collect data from the backend
     const res = await fetch('/api/auth/signin', 
       {
@@ -65,7 +64,7 @@ export default function SignIn() {
           id="password" onChange={handleChange}
         />
         <button disabled={loading} className="bg-slate-700 text-white 
-        p-3 rounded-lg uppercase hover:opacity-95 disabled:m-80">
+        p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80">
           {loading ? 'Loading...' : 'Sign In'}
         </button>
       </form>

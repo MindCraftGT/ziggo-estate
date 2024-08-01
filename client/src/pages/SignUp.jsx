@@ -11,16 +11,15 @@ export default function SignUp() {
   const handleChange = (e) => {
     setFormData({
         ...formData,
-        [e.target.id]: e.target.value
+        [e.target.id]: e.target.value,
       });
   };
-  console.log(formData);
+  //console.log(formData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      setLoading(true);
-
     //setting the fetch function to collect data from the backend
     const res = await fetch('/api/auth/signup', 
       {
@@ -73,12 +72,12 @@ export default function SignUp() {
           id="password" onChange={handleChange}
         />
         <button disabled={loading} className="bg-slate-700 text-white 
-        p-3 rounded-lg uppercase hover:opacity-95 disabled:m-80">
+        p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80">
           {loading ? 'Loading...' : 'Sign Up'}
         </button>
       </form>
       <div className="flex space-x-3 mt-6">
-        <p>Do you have an account?</p>
+        <p>Have an account?</p>
         <Link to={"/sign-in"}>
           <span className="text-blue-700">Sign In</span>
         </Link>
