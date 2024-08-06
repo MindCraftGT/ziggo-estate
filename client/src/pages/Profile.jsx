@@ -40,7 +40,8 @@ export default function Profile() {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         setFilePercentage(Math.round(progress));
       },
-      (error) => {
+      //code block to handle file upload error
+      () => {
         setFileUploadError(true);
       },
       () => {
