@@ -1,6 +1,4 @@
 import mongoose from "mongoose";
-import { type } from "os";
-
 
 //creating a userschema
 const userSchema = new mongoose.Schema(
@@ -22,7 +20,7 @@ const userSchema = new mongoose.Schema(
 		avatar: {
 			type: String,
 			default:
-				"https://www.vecteezy.com/free-vector/profile-avatar"
+				"https://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png"
 		},
 	},
 	{ timestamps: true },
