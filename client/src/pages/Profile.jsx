@@ -57,7 +57,7 @@ export default function Profile() {
       <form className="flex flex-col gap-4">
         <input onChange={(e) => setFile(e.target.files[0])} 
           type="file" ref={fileRef} hidden accept="image/*" />
-        <img onClick={() => fileRef.current.click()} src={formData.avatar || "https://www.example.com/default-avatar.png"} 
+        <img onClick={() => fileRef.current.click()} src={formData.avatar || "https://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png"} 
           alt="profile"
           className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-3" />
 
