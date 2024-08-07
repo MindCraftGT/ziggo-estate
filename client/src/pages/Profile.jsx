@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState, useEffect } from "react";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { app } from "../firebase";
-import { updateUserFailure, updateUserStart, updateUserSuccess } from "../redux/user/userSlice";
+import { deleteUserFailure, deleteUserStart, deleteUserSuccess, updateUserFailure, updateUserStart, updateUserSuccess } from "../redux/user/userSlice";
 
 export default function Profile() {
   const fileRef = useRef(null);
@@ -13,6 +13,7 @@ export default function Profile() {
   const [formData, setFormData] = useState({ ...currentUser });
   const dispatch = useDispatch();
   const [updateSuccess, setUpdateSuccess] = useState(false);
+  const [deleteSuccess, setDeleteSuccess] = useState(false);
 
   useEffect(() => {
     if (file) {
@@ -80,7 +81,24 @@ export default function Profile() {
       dispatch(updateUserFailure(error.message));
     }
   }
-
+//Code block handling the functionality of deleting a user from the database.
+  const handleDeleteUser = async () => {
+    try {
+      dispatch(deleteUserStart());
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if(data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
+      }
+      dispatch(deleteUserSuccess(data));
+      setDeleteSuccess(true);
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message));
+    }
+  }
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl text-center font-semibold my-8">Profile</h1>
@@ -131,7 +149,11 @@ export default function Profile() {
         </button>
       </form>
       <div className="flex justify-between items-center p-4 mt-4">
-        <span className="text-red-500 hover:text-red-800 cursor-pointer">Delete Account</span>
+        <span 
+          className="text-red-500 hover:text-red-800 cursor-pointer"
+          onClick={handleDeleteUser}>
+          Delete Account
+        </span>
         <span className="text-red-500 hover:text-red-800 cursor-pointer">Sign Out</span>
       </div>
       <p className="text-red-800 mt-6">{error ? error : ''}</p>

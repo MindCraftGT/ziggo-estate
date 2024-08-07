@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 import User from '../model/user.model.js';
+import { errorHandler } from '../utils/error.js';
 
 export const test = (req, res) => {
     res.json({
@@ -28,4 +29,15 @@ export const updateUserInfo = async (req, res, next) => {
    } catch (error) {
         next(error);
    }
+}
+
+export const deleteUserInfo = async (req, res, next) => {
+    if(req.user.id !== req.params.id) return next(errorHandler(401, 'User can only delete their account.'));
+    try {
+        await User.findByIdAndDelete(req.params.id);
+        res.clearCookie('access_token');
+        res.status(200).json('User deleted successfully!');
+    } catch (error) {
+        
+    }
 }
