@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState, useEffect } from "react";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { app } from "../firebase";
-import { deleteUserFailure, deleteUserStart, deleteUserSuccess, updateUserFailure, updateUserStart, updateUserSuccess } from "../redux/user/userSlice";
+import { deleteUserFailure, deleteUserStart, deleteUserSuccess, signOutUserFailure, signOutUserStart, signOutUserSuccess, updateUserFailure, updateUserStart, updateUserSuccess } from "../redux/user/userSlice";
 
 export default function Profile() {
   const fileRef = useRef(null);
@@ -21,9 +21,9 @@ export default function Profile() {
     }
   }, [file]);
 
-  useEffect(() => {
-    console.log('Avatar URL:', currentUser.avatar);
-  }, [currentUser.avatar]);
+  // useEffect(() => {
+  //   console.log('Avatar URL:', currentUser.avatar);
+  // }, [currentUser.avatar]);
 
   useEffect(() => {
     // Ensure currentUser is updated if necessary
@@ -58,7 +58,7 @@ export default function Profile() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   }
-//code block to handle the update data form to the backend
+//code block to handle the update data form and post to the backend
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -97,6 +97,22 @@ export default function Profile() {
       setDeleteSuccess(true);
     } catch (error) {
       dispatch(deleteUserFailure(error.message));
+    }
+  }
+
+  //handling signing out of users from the server
+  const handleSignOut = async () => {
+    try {
+      dispatch(signOutUserStart());
+      const res = await fetch('/api/auth/signout');
+      const data = await res.json();
+      if(data.success === false) {
+        dispatch(signOutUserFailure(data));
+        return;
+      }
+      dispatch(signOutUserSuccess(data));
+    } catch (error) {
+      dispatch(signOutUserFailure(error));
     }
   }
   return (
@@ -154,7 +170,11 @@ export default function Profile() {
           onClick={handleDeleteUser}>
           Delete Account
         </span>
-        <span className="text-red-500 hover:text-red-800 cursor-pointer">Sign Out</span>
+        <span 
+        className="text-red-500 hover:text-red-800 cursor-pointer"
+        onClick={handleSignOut}>
+          Sign Out
+        </span>
       </div>
       <p className="text-red-800 mt-6">{error ? error : ''}</p>
       <p className="text-green-800 mt-6">{updateSuccess ? 'Successful User Information Update' : ''}</p>

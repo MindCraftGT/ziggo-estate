@@ -9,7 +9,7 @@ export const test = (req, res) => {
 };
 
 export const updateUserInfo = async (req, res, next) => {
-    if(req.user.id !== req.params.id) return next(errarHandler(401, 'You can only updated your own user account!'));
+    if(req.user.id !== req.params.id) return next(errorHandler(401, 'You can only updated your own user account!'));
    try {
     if(req.body.password) {
         req.body.password = bcrypt.hashSync(req.body.password, 10)
