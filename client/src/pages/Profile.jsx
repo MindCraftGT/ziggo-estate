@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { app } from "../firebase";
 import { deleteUserFailure, deleteUserStart, deleteUserSuccess, signOutUserFailure, signOutUserStart, signOutUserSuccess, updateUserFailure, updateUserStart, updateUserSuccess } from "../redux/user/userSlice";
+import { Link } from "react-router-dom";
 
 export default function Profile() {
   const fileRef = useRef(null);
@@ -13,7 +14,6 @@ export default function Profile() {
   const [formData, setFormData] = useState({ ...currentUser });
   const dispatch = useDispatch();
   const [updateSuccess, setUpdateSuccess] = useState(false);
-  const [deleteSuccess, setDeleteSuccess] = useState(false);
 
   useEffect(() => {
     if (file) {
@@ -94,7 +94,6 @@ export default function Profile() {
         return;
       }
       dispatch(deleteUserSuccess(data));
-      setDeleteSuccess(true);
     } catch (error) {
       dispatch(deleteUserFailure(error.message));
     }
@@ -163,6 +162,11 @@ export default function Profile() {
           className="bg-slate-800 text-white p-3 rounded-lg hover:opacity-95 disabled:opacity-80">
           {loading ? 'Loading...' : 'Update'}
         </button>
+        <Link 
+          className="bg-emerald-800 p-3 rounded-lg text-white text-center hover:opacity-95 disabled:opacity-80" 
+          to={"/create-listing"}>
+            Create Listing
+        </Link>
       </form>
       <div className="flex justify-between items-center p-4 mt-4">
         <span 
