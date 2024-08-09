@@ -54,8 +54,8 @@ const listingSchema = new mongoose.Schema({
     userRef:{
         type: String,
         required: true
-    }
-}, {timeStamp: true});
+    },
+}, {timestamps: true});
 
 //creating the listing model
 const Listing = mongoose.model('Listing', listingSchema);
