@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import User from '../model/user.model.js';
 import { errorHandler } from '../utils/error.js';
+import Listing from '../model/listing.model.js';
 
 export const test = (req, res) => {
     res.json({
@@ -40,4 +41,21 @@ export const deleteUserInfo = async (req, res, next) => {
     } catch (error) {
         
     }
-}
+};
+
+//create a user listings once a listing has been successfully created
+export const getUserListings = async (req, res, next) => {
+    //  const paramId = mongoose.Types.ObjectId(req.params.id);
+    
+    //There is an error here that needs to be handled later.
+    if(req.user.id === req.params.id) {
+        try {
+            const listings = await Listing.find({ userRef: req.user.id });
+            res.status(200).json(listings);
+        } catch (error) {
+            next(error);
+        }
+    } else {
+        return next(errorHandler(401, 'You can only view your own listings if you have authentication credentials.'));
+    }
+};

@@ -24,7 +24,7 @@ export default function CreatingList() {
     const [uploading, setUploading] = useState(false);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
-    const { currentUser } = useSelector(state => state.user);
+    const { currentUser } = useSelector(state => state.user); 
     const navigate = useNavigate();
 
 
