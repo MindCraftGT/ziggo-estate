@@ -46,7 +46,7 @@ export const deleteUserInfo = async (req, res, next) => {
 //create a user listings once a listing has been successfully created
 export const getUserListings = async (req, res, next) => {
     //  const paramId = mongoose.Types.ObjectId(req.params.id);
-    
+
     //There is an error here that needs to be handled later.
     if(req.user.id === req.params.id) {
         try {
