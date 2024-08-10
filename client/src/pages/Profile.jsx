@@ -253,9 +253,11 @@ const handleListDelete = async(listingId) => {
                   onClick={() => handleListDelete(listing._id)}>
                   Delete
                 </div>
-                <div className="text-emerald-800">
-                  Edit
-                </div>
+                <Link to={`/update-listing/${listing._id}`} >
+                  <div className="text-emerald-800">
+                    Edit
+                  </div>
+                </Link>
               </div>
           </div>
         ))}

@@ -32,7 +32,7 @@ export const deleteListing = async(req, res, next) => {
 
 // Update a listing
 export const updateListing = async(req, res, next) => {
-    const listing = await Listing.findById(re.params.id);
+    const listing = await Listing.findById(req.params.id);
 
     if(!listing) {
         return next(errorHandler(404, 'Listing not found!'));
@@ -49,6 +49,19 @@ export const updateListing = async(req, res, next) => {
             { new: true }
         );
         res.status(200).json(updatedListing);
+    } catch (error) {
+        next(error);
+    }
+};
+
+// Get a listing by its ID
+export const getListing = async(req, res, next) => {
+    try {
+       const listing = await Listing.findById(req.params.id);
+       if(!listing) {
+        return next(errorHandler(404, 'Invalid'));
+       }
+       res.status(200).json(listing);
     } catch (error) {
         next(error);
     }
