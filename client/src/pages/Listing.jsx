@@ -10,20 +10,21 @@ import {
  FaBath,
  FaParking,
  FaBed,
- FaMapMarkedAlt,
+ FaMapMarkerAlt,
  FaShare,
  FaChair,
- FaMapMarkerAlt
 } from 'react-icons/fa';
+import Contact from "../components/Contact";
 
 
 export default function Listing() {
     const params = useParams();
     const { currentUser } = useSelector(state => state.user);
-    const [listing, setListing] = useState(false);
+    const [listing, setListing] = useState(null);
     const [loading, setLoading] = useState(false);
     const [copied, setCopied] = useState(false);
     const [error, setError] = useState(false);
+    const [showContact, setShowContact] = useState(false);
     SwiperCore.use([Navigation]); //using navigation module for swiper
 
 
@@ -132,6 +133,15 @@ export default function Listing() {
                             {listing.furnished ? 'Furnished': 'Not Furnished'}
                         </li>
                     </ul>
+                    {currentUser && listing.userRef !== currentUser._id && !showContact && (
+                        <button 
+                            onClick={() => setShowContact(true)}
+                            className="bg-emerald-800 text-white rounded-lg hover:opacity-95 p-3"
+                        >
+                            Contact Landlord
+                        </button>
+                    )}
+                    {showContact && <Contact listing={listing}/>}
                     </div>
             </div>
         }
