@@ -110,7 +110,11 @@ export const getListings = async(req, res, next) => {
             type
         }).sort({
             [sort]: order
-        }).limit(limit).limit
+        }).limit(
+            limit
+        ).skip(
+            startIndex
+        );
 
 
     } catch (error) {
