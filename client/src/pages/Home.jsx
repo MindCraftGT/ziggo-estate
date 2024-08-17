@@ -12,45 +12,32 @@ export default function Home() {
   const [rentListings, setRentListings] = useState([]);
   SwiperCore.use([Navigation]);
 
-  console.log(saleListings)
-
   useEffect(() => {
-    // fetch listings with offer, sale and rent
-    const fetchOfferListings = async() => {
-      try {
-        const res = await fetch('/api/listing/get?offer=true&limit=4');
-        const data = await res.json();
-        setOfferListings(data);
-        fetchSalesListings();
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchOfferListings();
+  const fetchAllListings = async () => {
+    try {
+      const [offerRes, saleRes, rentRes] = await Promise.all([
+        fetch('/api/listing/get?offer=true&limit=4'),
+        fetch('/api/listing/get?type=sale&limit=4'),
+        fetch('/api/listing/get?type=rent&limit=4')
+      ]);
 
-    const fetchSalesListings = async() => {
-      try {
-        const res = await fetch('/api/listing/get?type=sale&limit=4');
-        const data = await res.json();
-        setSaleListings(data);
-        fetchRentListings();
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchSalesListings();
+      const [offerData, saleData, rentData] = await Promise.all([
+        offerRes.json(),
+        saleRes.json(),
+        rentRes.json()
+      ]);
 
-    const fetchRentListings = async() => {
-      try {
-        const res = await fetch('/api/listing/get?type=rent&limit=4');
-        const data = await res.json();
-        setRentListings(data);
-      } catch (error) {
-        console.log(error);
-      }
+      setOfferListings(offerData);
+      setSaleListings(saleData);
+      setRentListings(rentData);
+    } catch (error) {
+      console.log(error);
     }
-    fetchRentListings();
-  }, [])
+  };
+
+  fetchAllListings();
+}, []);
+
   return (
     <div>
       {/* top */}

@@ -14,14 +14,14 @@ export default function ListingItem( {listing}) {
             <MdLocationOn className="h-4 w-4 text-green-800"/>
             <p className="text-sm text-gray-600 truncate w-full">{listing.address}</p>
         </div>
-        <div className="">
+        <div className="p-3">
             <p className="text-sm text-gray-600 line-clamp-2">{listing.description}</p>
             <p className="text-slate-500 mt-2 font-semibold flex items-center">
                 $
                 {listing.offer ? listing.discountedPrice.toLocaleString('en-us') : listing.regularPrice.toLocaleString('en-us')}
                 {listing.type === 'rent' && ' / month'}
             </p>
-            <div className="text-slate-700 flex justify-between">
+            <div className="text-slate-700 flex gap-4">
                 <div className="font-bold text-sm">
 
                     {listing.bedrooms > 1 ? `${listing.bedrooms} Beds` : `${listing.bedrooms} Bed`}
