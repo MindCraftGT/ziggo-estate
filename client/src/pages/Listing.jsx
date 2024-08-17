@@ -90,7 +90,7 @@ export default function Listing() {
                     )}
                     <div className="flex flex-col max-w-4xl mx-auto p-3 gap-4 my-7">
                         <p className="text-2xl font-semibold">
-                            {listing.name} - ${' '}
+                            {listing.name} - KES{' '}
                             {listing.offer ? listing.discountedPrice.toLocaleString('en-US') : listing.regularPrice.toLocaleString('en-US')}
                             {listing.type === 'rent' && ' / month'}
 
@@ -105,7 +105,7 @@ export default function Listing() {
                             </p>
                             {listing.offer && 
                             (<p className="bg-emerald-900 w-full max-w-[200px] text-white text-center p-1 rounded-md">
-                                ${+listing.regularPrice - +listing.discountedPrice} OFF
+                                KES{+listing.regularPrice - +listing.discountedPrice} OFF
                             </p>
                             )}
                         </div>

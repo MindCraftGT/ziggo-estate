@@ -263,7 +263,7 @@ export default function UpdateListing() {
                         value={formData.bathrooms}/>
                         <span>Bathrooms</span>
                     </div>
-                    <div className=" flex items-center gap-2">
+                    <div className="flex items-center gap-2">
                         <input 
                         type="number" 
                         id="regularPrice"
@@ -274,7 +274,7 @@ export default function UpdateListing() {
                         value={formData.regularPrice}/>
                         <div className="flex flex-col items-center">
                             <p>Regular Price</p>
-                            <span className="text-xs">{`($ / Month)`}</span>
+                            <span className="text-xs">{`(KES / Month)`}</span>
                         </div>
                     </div>
                     {formData.offer && (
@@ -290,7 +290,7 @@ export default function UpdateListing() {
                         />
                         <div className="flex flex-col items-center">
                             <p>Discounted Price</p>
-                            <span className="text-xs">{`($ / Month)`}</span>
+                            <span className="text-xs">{`(KES / Month)`}</span>
                         </div>
                     </div>
                     )}
@@ -338,7 +338,7 @@ export default function UpdateListing() {
                 <button
                     disabled={loading || uploading} 
                     className="bg-emerald-800 text-white p-3 rounded-lg mt-6 hover:shadow-lg hover:opacity-95 disabled:opacity-70">
-                    {loading ? 'Creating...' : 'Update Listing'}
+                    {loading ? 'Updating...' : 'Update Listing'}
                 </button>
                 {error && <p className="text-red-800 text-sm p-3">{error}</p>}
             </div>
