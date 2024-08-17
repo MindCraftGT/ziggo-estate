@@ -77,7 +77,7 @@ export default function Home() {
         {offerListings && offerListings.length > 0 && (
           <div className="">
             <div className="my-3">
-              <h2 className='text-2xl font-semibold text-slate-600'>Recent Property Offers</h2>
+              <h2 className='text-2xl font-semibold text-slate-600 text-center'>Recent Property Offers</h2>
               <Link to={'/search?offer=true'} className='text-sm text-emerald-800 hover:underline'>
                 Show More Offers
               </Link>
@@ -92,7 +92,7 @@ export default function Home() {
         {saleListings && saleListings.length > 0 && (
           <div className="">
             <div className="my-3">
-              <h2 className='text-2xl font-semibold text-slate-600'>Recent Property Sales</h2>
+              <h2 className='text-2xl font-semibold text-slate-600 text-center'>Recent Property Sales</h2>
               <Link to={'/search?type=sale'} className='text-sm text-emerald-800 hover:underline'>
                 Show More Sales
               </Link>
@@ -107,7 +107,7 @@ export default function Home() {
         {rentListings && rentListings.length > 0 && (
           <div className="">
             <div className="my-3">
-              <h2 className='text-2xl font-semibold text-slate-600'>Recent Property for Rental</h2>
+              <h2 className='text-2xl font-semibold text-slate-600 text-center'>Recent Property for Rental</h2>
               <Link to={'/search?type=rent'} className='text-sm text-emerald-800 hover:underline'>
                 Show More Rentals
               </Link>
