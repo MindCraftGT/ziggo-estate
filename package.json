@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon api/index.js",
     "start": "node api/index.js",
-    "build": "npm install && npm --prefix client && npm run build --prefix client"
+    "build": "npm install && npm --prefix client install && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
