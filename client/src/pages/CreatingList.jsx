@@ -28,7 +28,7 @@ export default function CreatingList() {
     const navigate = useNavigate();
 
 
-    console.log(formData);
+    // console.log(formData);
     const handleImageSubmit = () =>{
         if(files.length > 0 && files.length + formData.imageUrls.length < 11) {
             setUploading(true);

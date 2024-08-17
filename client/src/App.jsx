@@ -10,6 +10,7 @@ import CreatingList from './pages/CreatingList';
 import UpdateListing from './pages/UpdateListing';
 import Listing from './pages/Listing';
 import Search from './pages/Search';
+import Footer from './components/Footer';
 
 export default function App() {
   return <BrowserRouter>
@@ -27,5 +28,7 @@ export default function App() {
           <Route path='/search' element={<Search />}/>
           <Route path='/listing/:listingId' element={<Listing />}/>
         </Routes>
-      </BrowserRouter>
+  <Footer />
+  </BrowserRouter>
+  
 }
