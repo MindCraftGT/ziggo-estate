@@ -62,7 +62,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 3000; // Use the environment variable for the port
+const PORT = process.env.PORT; // Use the environment variable for the port
 app.listen(PORT, () => {
 	console.log(
 		`Server running on port ${PORT}, Nice Toast!`,
