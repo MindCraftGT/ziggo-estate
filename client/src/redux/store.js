@@ -4,7 +4,7 @@ import { persistReducer } from 'redux-persist';
 import storage from "redux-persist/lib/storage";
 import persistStore from "redux-persist/es/persistStore";
 
-//add redux-persist to browser losing data and signing off the user whenever the page is reloaded
+//add redux-persist to the browser to prevent losing data and signing off the user whenever the page is reloaded
 const rootReducer = combineReducers({user: useReducer});
 
 const persistConfig = {
