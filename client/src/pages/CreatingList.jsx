@@ -54,7 +54,7 @@ export default function CreatingList() {
         }
     };
 
-    //
+    //handles upload
     const storeImages = async(file) => {
         return new Promise((resolve, reject) => {
             const storage = getStorage(app);
@@ -177,59 +177,58 @@ export default function CreatingList() {
                         onChange={handleChange}
                         value={formData.address}/>
                     <div className="flex gap-7 flex-wrap">
-                    <div className="flex gap-2 items-center">
-                        <input 
-                            type="checkbox" 
-                            id="sale"
-                            className="w-5"
-                            onChange={handleChange}
-                            checked={formData.type === 'sale'}/>
-                        <span className="">Sell</span>
-                    </div>
-                    <div className="flex gap-2 items-center">
-                        <input 
-                            type="checkbox" 
-                            id="rent"
-                            className="w-5"
-                            onChange={handleChange}
-                            checked={formData.type === 'rent'}/>
-                        <span className="">Rent</span>
-                    </div>
-                    <div className="flex gap-2 items-center">
-                        <input 
-                            type="checkbox" 
-                            id="parking"
-                            className="w-5"
-                            onChange={handleChange}
-                            checked={formData.parking}/>
-                        <span className="">Parking Spot</span>
-                    </div>
-                    <div className="flex gap-2 items-center">
-                        <input 
-                            type="checkbox" 
-                            id="furnished"
-                            className="w-5"
-                            onChange={handleChange}
-                            checked={formData.furnished}/>
-                        <span className="">Furnished</span>
-                    </div>
-                    <div className="flex gap-2 items-center">
-                        <input 
-                            type="checkbox" 
-                            id="offer"
-                            className="w-5"
-                            onChange={handleChange}
-                            checked={formData.offer}/>
-                        <span className="">Offer</span>
-                    </div>
-
+                        <div className="flex gap-2 items-center">
+                            <input 
+                                type="checkbox" 
+                                id="sale"
+                                className="w-5"
+                                onChange={handleChange}
+                                checked={formData.type === 'sale'}/>
+                            <span className="">Sell</span>
+                        </div>
+                        <div className="flex gap-2 items-center">
+                            <input 
+                                type="checkbox" 
+                                id="rent"
+                                className="w-5"
+                                onChange={handleChange}
+                                checked={formData.type === 'rent'}/>
+                            <span className="">Rent</span>
+                        </div>
+                        <div className="flex gap-2 items-center">
+                            <input 
+                                type="checkbox" 
+                                id="parking"
+                                className="w-5"
+                                onChange={handleChange}
+                                checked={formData.parking}/>
+                            <span className="">Parking Spot</span>
+                        </div>
+                        <div className="flex gap-2 items-center">
+                            <input 
+                                type="checkbox" 
+                                id="furnished"
+                                className="w-5"
+                                onChange={handleChange}
+                                checked={formData.furnished}/>
+                            <span className="">Furnished</span>
+                        </div>
+                        <div className="flex gap-2 items-center">
+                            <input 
+                                type="checkbox" 
+                                id="offer"
+                                className="w-5"
+                                onChange={handleChange}
+                                checked={formData.offer}/>
+                            <span className="">Offer</span>
+                        </div>
                 </div>
                 <div className="flex flex-wrap gap-7">
                     <div className=" flex items-center gap-2">
                         <input 
                         type="number" 
                         id="bedrooms"
-                        min="1"
+                        min="0"
                         max="20"
                         className="p-3 rounded-lg border border-emerald-300 focus:outline-none "
                         onChange={handleChange}
